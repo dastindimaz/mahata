@@ -134,7 +134,7 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 
 /* Portfolio */
 .portfolio-page { background: #f3f0ea; }
-.portfolio-hero { min-height: 620px; display: flex; align-items: flex-end; padding: 190px 0 105px; color: white; background: linear-gradient(120deg, rgba(8,8,8,.96), rgba(8,8,8,.72)), url("assets/portfolio/saji/01.webp") center/cover; }
+.portfolio-hero { min-height: 620px; display: flex; align-items: flex-end; padding: 190px 0 105px; color: white; background: linear-gradient(120deg, rgba(8,8,8,.96), rgba(8,8,8,.72)), url("assets/covers/saji-function-hall.webp") center/cover; }
 .portfolio-hero h1 { max-width: 940px; margin: 0; font-size: clamp(3.6rem, 8vw, 7.8rem); line-height: .94; letter-spacing: -.065em; }
 .portfolio-hero h1 em { color: var(--red); font-style: normal; }
 .portfolio-hero > .container > p:not(.eyebrow) { max-width: 620px; margin: 30px 0 0; color: rgba(255,255,255,.68); }
@@ -154,14 +154,23 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 .gallery-heading > p { max-width: 420px; margin: 0 0 7px; color: rgba(255,255,255,.56); font-size: 13px; }
 .gallery-light .gallery-heading > p { color: var(--muted); }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.gallery-item { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #222; cursor: zoom-in; }
+.gallery-item { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; overflow: hidden; color: inherit; background: #222; border: 0; font: inherit; text-align: left; cursor: zoom-in; }
 .gallery-item:nth-child(7n + 1) { grid-column: span 2; grid-row: span 2; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.portfolio-project-grid img, [data-lightbox-image] { -webkit-user-drag: none; user-select: none; }
 .gallery-item span { position: absolute; right: 12px; bottom: 12px; padding: 7px 11px; color: white; background: rgba(0,0,0,.68); border-radius: 999px; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
 .footer-label-spaced { margin-top: 20px !important; }
+.portfolio-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 16px; }
+.portfolio-project-card { min-width: 0; scroll-margin-top: 92px; }
+.portfolio-project-card .gallery-item,
+.portfolio-project-card .gallery-item:nth-child(7n + 1) { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
+.portfolio-project-title { padding: 18px 2px 0; }
+.portfolio-project-title h3 { margin: 0; font-size: 18px; line-height: 1.35; letter-spacing: -.025em; }
+.portfolio-all-projects { display: flex; justify-content: center; margin-top: 68px; }
 .portfolio-lightbox { position: fixed; inset: 0; z-index: 300; display: grid; grid-template-columns: 72px minmax(0, 1fr) 72px; align-items: center; padding: 28px; color: white; background: rgba(5,5,5,.96); touch-action: pan-y; }
 .portfolio-lightbox[hidden] { display: none; }
 .portfolio-lightbox figure { width: min(1120px, 100%); margin: 0 auto; }
+.lightbox-media { position: relative; }
 .portfolio-lightbox figure img { display: block; width: 100%; max-height: calc(100vh - 130px); object-fit: contain; }
 .portfolio-lightbox figcaption { display: flex; justify-content: space-between; gap: 20px; padding-top: 14px; color: rgba(255,255,255,.72); font-size: 12px; }
 .portfolio-lightbox figcaption strong { color: white; font-weight: 500; }
@@ -310,6 +319,9 @@ body.lightbox-open { overflow: hidden; }
   .gallery-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 32px; }
   .gallery-grid { grid-template-columns: 1fr 1fr; gap: 7px; }
   .gallery-item, .gallery-item:nth-child(7n + 1) { grid-column: auto; grid-row: auto; aspect-ratio: 1; }
+  .portfolio-project-grid { grid-template-columns: 1fr; gap: 38px; }
+  .portfolio-project-card .gallery-item,
+  .portfolio-project-card .gallery-item:nth-child(7n + 1) { aspect-ratio: 4 / 3; }
   .portfolio-lightbox { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 16px; padding: 72px 16px 22px; }
   .portfolio-lightbox figure { grid-column: 1 / -1; grid-row: 1; }
   .portfolio-lightbox figure img { max-height: calc(100vh - 190px); }
@@ -342,4 +354,8 @@ body.lightbox-open { overflow: hidden; }
   .rotating-word span:first-child { opacity: 1; }
   .rotating-word span:last-child { display: none; }
   .marquee-track { animation: none !important; }
+}
+
+@media (min-width: 641px) and (max-width: 980px) {
+  .portfolio-project-grid { grid-template-columns: repeat(2, 1fr); }
 }
