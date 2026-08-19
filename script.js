@@ -43,3 +43,76 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach((section) => sectionObserver.observe(section));
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
+// Popup galeri portfolio: tombol, keyboard, dan swipe di perangkat sentuh.
+const portfolioLightbox = document.querySelector("[data-lightbox]");
+
+if (portfolioLightbox) {
+  const lightboxImage = portfolioLightbox.querySelector("[data-lightbox-image]");
+  const lightboxTitle = portfolioLightbox.querySelector("[data-lightbox-title]");
+  const lightboxCount = portfolioLightbox.querySelector("[data-lightbox-count]");
+  const closeButton = portfolioLightbox.querySelector("[data-lightbox-close]");
+  const previousButton = portfolioLightbox.querySelector("[data-lightbox-prev]");
+  const nextButton = portfolioLightbox.querySelector("[data-lightbox-next]");
+  let activeItems = [];
+  let activeIndex = 0;
+  let previousFocus = null;
+  let touchStartX = 0;
+
+  const showPhoto = (index) => {
+    activeIndex = (index + activeItems.length) % activeItems.length;
+    const item = activeItems[activeIndex];
+    const sourceImage = item.querySelector("img");
+    const project = item.closest(".project-gallery-section");
+    lightboxImage.src = item.href;
+    lightboxImage.alt = sourceImage.alt;
+    lightboxTitle.textContent = project.querySelector("h2").textContent;
+    lightboxCount.textContent = `${activeIndex + 1} / ${activeItems.length}`;
+  };
+
+  const openLightbox = (item) => {
+    const gallery = item.closest(".project-gallery-section");
+    activeItems = Array.from(gallery.querySelectorAll(".gallery-item"));
+    previousFocus = item;
+    portfolioLightbox.hidden = false;
+    document.body.classList.add("lightbox-open");
+    showPhoto(activeItems.indexOf(item));
+    closeButton.focus();
+  };
+
+  const closeLightbox = () => {
+    portfolioLightbox.hidden = true;
+    document.body.classList.remove("lightbox-open");
+    if (previousFocus) previousFocus.focus();
+  };
+
+  document.querySelectorAll(".gallery-item").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+      openLightbox(item);
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  previousButton.addEventListener("click", () => showPhoto(activeIndex - 1));
+  nextButton.addEventListener("click", () => showPhoto(activeIndex + 1));
+  portfolioLightbox.addEventListener("click", (event) => {
+    if (event.target === portfolioLightbox) closeLightbox();
+  });
+
+  portfolioLightbox.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+
+  portfolioLightbox.addEventListener("touchend", (event) => {
+    const distance = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(distance) < 45) return;
+    showPhoto(activeIndex + (distance < 0 ? 1 : -1));
+  }, { passive: true });
+
+  document.addEventListener("keydown", (event) => {
+    if (portfolioLightbox.hidden) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") showPhoto(activeIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(activeIndex + 1);
+  });
+}
