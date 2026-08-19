@@ -11,7 +11,7 @@
 
 * { box-sizing: border-box; }
 *, *::before, *::after { animation: none !important; transition: none !important; }
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Lexend", sans-serif; font-weight: 300; line-height: 1.7; }
 body.menu-open { overflow: hidden; }
 img { display: block; max-width: 100%; }
@@ -239,6 +239,7 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 
 @media (max-width: 640px) {
   :root { --container: calc(100% - 28px); }
+  html { scroll-padding-top: 72px; }
   .site-header { padding: 15px 0; }
   .brand img { width: auto; height: 39px; }
   .hero { min-height: auto; display: block; padding-bottom: 26px; background-position: 64% center; }
@@ -283,6 +284,7 @@ h1 em, h2 em { color: var(--red); font-style: normal; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .rotating-word span { animation: none !important; }
   .rotating-word span:first-child { opacity: 1; }
   .rotating-word span:last-child { display: none; }
