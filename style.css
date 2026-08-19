@@ -260,12 +260,13 @@ body.lightbox-open { overflow: hidden; }
 
 @media (max-width: 980px) {
   :root { --container: min(100% - 32px, 760px); }
+  .site-header.is-scrolled { background: rgba(15, 15, 15, .98); -webkit-backdrop-filter: none; backdrop-filter: none; }
   .nav-cta { display: none; }
   .menu-button { display: block; position: relative; z-index: 3; }
   .menu-button[aria-expanded="true"] span:nth-of-type(2) { transform: translateY(4px) rotate(45deg); }
   .menu-button[aria-expanded="true"] span:nth-of-type(3) { transform: translateY(-4px) rotate(-45deg); }
-  .main-nav { position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 22px; padding: 90px 32px; background: #0f0f0f; transform: translateX(100%); }
-  .main-nav.is-open { transform: translateX(0); }
+  .main-nav { position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 22px; padding: 90px 32px; background: #0f0f0f; transform: translateX(100%); visibility: hidden; pointer-events: none; }
+  .main-nav.is-open { transform: translateX(0); visibility: visible; pointer-events: auto; }
   .main-nav a { font-family: "Manrope", sans-serif; font-size: 36px; font-weight: 700; }
   .hero-content { padding: 145px 0 230px; }
   .hero-foot { align-items: flex-start; gap: 30px; }

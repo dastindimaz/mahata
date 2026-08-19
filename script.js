@@ -1,5 +1,5 @@
 const header = document.querySelector('[data-header]');
-const menuButton = document.querySelector('[data-menu-button]');
+const menuButton = document.querySelector('[data-menu-button], [data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 const navLinks = [...document.querySelectorAll('.main-nav a')];
 
@@ -7,18 +7,33 @@ const syncHeader = () => header.classList.toggle('is-scrolled', window.scrollY >
 syncHeader();
 window.addEventListener('scroll', syncHeader, { passive: true });
 
-menuButton.addEventListener('click', () => {
-  const open = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!open));
-  menu.classList.toggle('is-open', !open);
-  document.body.classList.toggle('menu-open', !open);
-});
-
-navLinks.forEach((link) => link.addEventListener('click', () => {
+const closeMenu = () => {
   menuButton.setAttribute('aria-expanded', 'false');
   menu.classList.remove('is-open');
   document.body.classList.remove('menu-open');
-}));
+};
+
+menuButton.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') === 'true';
+  if (open) {
+    closeMenu();
+    return;
+  }
+
+  menuButton.setAttribute('aria-expanded', 'true');
+  menu.classList.add('is-open');
+  document.body.classList.add('menu-open');
+});
+
+menu.addEventListener('click', (event) => {
+  if (event.target.closest('a')) closeMenu();
+});
+
+window.addEventListener('hashchange', closeMenu);
+window.addEventListener('pageshow', closeMenu);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
+});
 
 document.querySelectorAll('[data-accordion] button').forEach((button) => {
   button.addEventListener('click', () => {
@@ -62,15 +77,18 @@ if (portfolioLightbox) {
     activeIndex = (index + activeItems.length) % activeItems.length;
     const item = activeItems[activeIndex];
     const sourceImage = item.querySelector("img");
-    const project = item.closest(".project-gallery-section");
-    lightboxImage.src = item.href;
+    const projectCard = item.closest(".portfolio-project-card");
+    const projectSection = item.closest(".project-gallery-section");
+    lightboxImage.src = item.dataset.fullsrc || item.href;
     lightboxImage.alt = sourceImage.alt;
-    lightboxTitle.textContent = project.querySelector("h2").textContent;
+    lightboxTitle.textContent = projectCard
+      ? projectCard.querySelector("h3").textContent
+      : projectSection.querySelector("h2").textContent;
     lightboxCount.textContent = `${activeIndex + 1} / ${activeItems.length}`;
   };
 
   const openLightbox = (item) => {
-    const gallery = item.closest(".project-gallery-section");
+    const gallery = item.closest(".portfolio-project-grid") || item.closest(".project-gallery-section");
     activeItems = Array.from(gallery.querySelectorAll(".gallery-item"));
     previousFocus = item;
     portfolioLightbox.hidden = false;
@@ -116,3 +134,14 @@ if (portfolioLightbox) {
     if (event.key === "ArrowRight") showPhoto(activeIndex + 1);
   });
 }
+
+// Hambatan dasar untuk penyimpanan gambar melalui klik kanan atau drag.
+document.querySelectorAll(".portfolio-project-grid img, [data-lightbox-image]").forEach((image) => {
+  image.draggable = false;
+  image.addEventListener("dragstart", (event) => event.preventDefault());
+  image.addEventListener("contextmenu", (event) => event.preventDefault());
+});
+
+document.querySelector(".portfolio-project-grid")?.addEventListener("contextmenu", (event) => {
+  if (event.target.closest(".gallery-item")) event.preventDefault();
+});
