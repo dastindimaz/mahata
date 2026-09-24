@@ -1,11 +1,6 @@
-const header = document.querySelector('[data-header]');
 const menuButton = document.querySelector('[data-menu-button], [data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 const navLinks = [...document.querySelectorAll('.main-nav a')];
-
-const syncHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
-syncHeader();
-window.addEventListener('scroll', syncHeader, { passive: true });
 
 const closeMenu = () => {
   menuButton.setAttribute('aria-expanded', 'false');
