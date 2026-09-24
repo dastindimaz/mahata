@@ -1,12 +1,8 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TVHHVD8L');</script>
+  <!-- Google Tag Manager: dimuat setelah interaksi pertama agar tidak menghambat render -->
+  <script>(function(w,d){w.dataLayer=w.dataLayer||[];var loaded=false,events=['pointerdown','touchstart','keydown','scroll'];function loadGTM(){if(loaded)return;loaded=true;events.forEach(function(event){w.removeEventListener(event,loadGTM)});w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var script=d.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtm.js?id=GTM-TVHHVD8L';d.head.appendChild(script)}events.forEach(function(event){w.addEventListener(event,loadGTM,{once:true,passive:true})})})(window,document);</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +10,14 @@
   <meta name="description" content="Lihat portfolio Mahata Konstruksi, perusahaan konstruksi dan kontraktor pelaksana proyek rumah, renovasi, interior, kantor, serta ruang komersial.">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/webp" href="assets/mahata-favicon.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="preload" href="assets/covers/saji-function-hall.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="assets/mahata-logo-optimized.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/fonts/lexend-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>:root{--ink:#111;--paper:#f5f2ec;--red:#9d1e23;--container:min(1200px,calc(100% - 48px))}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font-family:"Lexend",sans-serif;font-weight:300;line-height:1.7}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.container{width:var(--container);margin-inline:auto}.site-header{position:fixed;inset:0 0 auto;z-index:100;padding:20px 0;color:#fff}.site-header.is-scrolled{padding:12px 0;background:rgba(15,15,15,.92)}.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:36px}.brand img{width:auto;height:46px;object-fit:contain;filter:brightness(0) invert(1)}.main-nav{display:flex;align-items:center;gap:34px;margin-left:auto}.main-nav a{font-size:14px;font-weight:400}.nav-cta{display:inline-flex;align-items:center;gap:12px;padding:11px 18px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:13px}.main-nav>.mobile-nav-cta,.menu-button{display:none}.portfolio-page{background:#f3f0ea}.portfolio-hero{min-height:620px;display:flex;align-items:flex-end;padding:190px 0 105px;color:#fff;background:linear-gradient(120deg,rgba(8,8,8,.96),rgba(8,8,8,.72)),url("assets/covers/saji-function-hall.webp") center/cover}.portfolio-hero h1{max-width:940px;margin:0;font-family:"Manrope",sans-serif;font-size:clamp(3.6rem,8vw,7.8rem);line-height:.94;letter-spacing:-.065em}@media(max-width:980px){:root{--container:min(100% - 32px,760px)}.nav-cta{display:none}.menu-button{display:block;position:relative;z-index:3;width:44px;height:44px;border:0;background:transparent}.main-nav{position:fixed;inset:0;z-index:2;flex-direction:column;justify-content:center;align-items:flex-start;gap:22px;padding:90px 32px;background:#0f0f0f;transform:translateX(100%);visibility:hidden}.main-nav.is-open{transform:translateX(0);visibility:visible}.main-nav a{font-size:36px;font-weight:700}.main-nav>a.mobile-nav-cta{position:absolute;right:32px;bottom:24px;left:32px;display:flex;justify-content:space-between;padding:15px 18px;border-radius:999px;background:var(--red);font-size:13px}}</style>
+  <link rel="preload" href="style.css?v=20260924-3" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css?v=20260924-3"></noscript>
+  <script src="script.js?v=20260924-2" defer></script>
 </head>
 <body class="portfolio-page">
   <!-- Google Tag Manager (noscript) -->
@@ -28,7 +27,7 @@
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
   <header class="site-header is-scrolled" data-header>
     <div class="container nav-wrap">
-      <a class="brand" href="index.html#home" aria-label="Mahata, kembali ke beranda"><img src="assets/mahata-logo.webp" alt="Mahata Construction" width="178" height="37"></a>
+      <a class="brand" href="index.html#home" aria-label="Mahata, kembali ke beranda"><img src="assets/mahata-logo-optimized.webp" alt="Mahata Construction" width="372" height="80" fetchpriority="high"></a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav" data-menu-button><span class="sr-only">Buka menu</span><span></span><span></span></button>
       <nav class="main-nav" id="main-nav" aria-label="Navigasi utama" data-menu>
         <a href="index.html#home">Home</a>
@@ -369,7 +368,7 @@
 
   <footer class="site-footer" id="kontak">
     <div class="container footer-grid">
-      <div class="footer-brand"><img src="assets/mahata-logo.webp" alt="Mahata Construction" width="178" height="37"><p><strong>PT Mahakarya Kita Konstruksi</strong><br>Kontraktor pelaksana untuk hunian dan komersial di Jabodetabek.</p></div>
+      <div class="footer-brand"><img src="assets/mahata-logo-optimized.webp" alt="Mahata Construction" width="372" height="80" loading="lazy" decoding="async"><p><strong>PT Mahakarya Kita Konstruksi</strong><br>Kontraktor pelaksana untuk hunian dan komersial di Jabodetabek.</p></div>
       <div><p class="footer-label">Navigasi</p><a href="index.html#home">Home</a><a href="index.html#layanan">Services</a><a href="portfolio.html">Project</a><a href="index.html#tentang">About Us</a></div>
       <div><p class="footer-label">Alamat Perusahaan</p><address>Menara 165, Jl. TB Simatupang Kav. 1, Lantai 4<br>Jakarta Selatan, DKI Jakarta, Indonesia</address><p class="footer-label footer-label-spaced">Alamat Operasional</p><address>Jl. Anggrek Blok B2 No. 20<br>Bakti Jaya, Sukmajaya, Depok City<br>West Java 16418</address></div>
       <div class="footer-contact"><p class="footer-label">Hubungi Kami</p><a href="mailto:hello@mahata.co">hello@mahata.co</a><a href="tel:+6281218018090">0812 1801 8090</a><a href="https://wa.me/6281218018090" target="_blank" rel="noopener">WhatsApp ↗</a></div>

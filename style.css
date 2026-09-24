@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Lexend";
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("assets/fonts/lexend-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/manrope-latin.woff2") format("woff2");
+}
+
 :root {
   --ink: #111111;
   --paper: #f5f2ec;
@@ -36,7 +52,8 @@ button { font: inherit; }
 .menu-button { display: none; width: 44px; height: 44px; border: 0; background: transparent; padding: 12px; }
 .menu-button span:not(.sr-only) { display: block; width: 100%; height: 2px; margin: 6px 0; background: white; }
 
-.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; color: white; background: #171717 url("assets/hero.webp") center/cover no-repeat; overflow: hidden; }
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; color: white; background: #171717; overflow: hidden; }
+.hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,8,8,.94) 0%, rgba(8,8,8,.75) 48%, rgba(8,8,8,.16) 78%), linear-gradient(0deg, rgba(8,8,8,.75), transparent 45%); }
 .hero-content { position: relative; z-index: 1; padding: 160px 0 190px; }
 .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 20px; font-size: 12px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; }
@@ -295,7 +312,8 @@ body.lightbox-open { overflow: hidden; }
   html { scroll-padding-top: 72px; }
   .site-header { padding: 15px 0; }
   .brand img { width: auto; height: 39px; }
-  .hero { min-height: auto; display: block; padding-bottom: 26px; background-position: 64% center; }
+  .hero { min-height: auto; display: block; padding-bottom: 26px; }
+  .hero-media { object-position: 64% center; }
   .hero-shade { background: linear-gradient(90deg, rgba(8,8,8,.95), rgba(8,8,8,.58)), linear-gradient(0deg, rgba(8,8,8,.9), transparent); }
   .hero-content { padding: 145px 0 42px; }
   h1 { font-size: clamp(2.35rem, 11.5vw, 3.2rem); }
