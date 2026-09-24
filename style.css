@@ -32,7 +32,7 @@ button { font: inherit; }
 .main-nav a:hover::after, .main-nav a.is-active::after { width: 100%; }
 .nav-cta { display: inline-flex; align-items: center; gap: 12px; padding: 11px 18px; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; font-size: 13px; }
 .nav-cta:hover { background: white; color: var(--red); border-color: white; }
-.mobile-nav-cta { display: none; }
+.main-nav > .mobile-nav-cta { display: none; }
 .menu-button { display: none; width: 44px; height: 44px; border: 0; background: transparent; padding: 12px; }
 .menu-button span:not(.sr-only) { display: block; width: 100%; height: 2px; margin: 6px 0; background: white; }
 
@@ -269,7 +269,7 @@ body.lightbox-open { overflow: hidden; }
   .main-nav { position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 22px; padding: 90px 32px; background: #0f0f0f; transform: translateX(100%); visibility: hidden; pointer-events: none; }
   .main-nav.is-open { transform: translateX(0); visibility: visible; pointer-events: auto; }
   .main-nav a { font-family: "Manrope", sans-serif; font-size: 36px; font-weight: 700; }
-  .main-nav a.mobile-nav-cta { position: absolute; right: 32px; bottom: calc(24px + env(safe-area-inset-bottom)); left: 32px; display: flex; align-items: center; justify-content: space-between; width: auto; padding: 15px 18px; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; color: white; background: var(--red); font-family: "Lexend", sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .main-nav > a.mobile-nav-cta { position: absolute; right: 32px; bottom: calc(24px + env(safe-area-inset-bottom)); left: 32px; display: flex; align-items: center; justify-content: space-between; width: auto; padding: 15px 18px; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; color: white; background: var(--red); font-family: "Lexend", sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
   .main-nav a.mobile-nav-cta::after { display: none; }
   .hero-content { padding: 145px 0 230px; }
   .hero-foot { align-items: flex-start; gap: 30px; }
